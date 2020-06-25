@@ -1,14 +1,28 @@
+"""Display a stock ticker visualization based on user input."""
 from flask import Flask, render_template, request, redirect
+
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route('/', methods=('GET', 'POST'))
 def index():
-  return render_template('index.html')
+    """Render the app's main page."""
+    if request.methods == 'GET':
+        # Default gives IBM's ticker when first loaded.
+        symbol = 'IBM'
+        return render_template('index.html', symbol=symbol)
+
+    else:
+        # User submitted a ticker symbol aka method = 'POST'
+        symbol = request.form['symbol']
+        return render_template('index.html', symbol=symbol)
+
 
 @app.route('/about')
 def about():
-  return render_template('about.html')
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
-  app.run(port=33507)
+    app.run(port=33507)
