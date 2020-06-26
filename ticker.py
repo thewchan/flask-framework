@@ -60,6 +60,7 @@ def ticker(symbol):
                  color='olive',
                  alpha=0.6,
                  legend_label='Open',
+                 name='Open',
                  )
         p.circle(df.index,
                  df['Close'],
@@ -67,21 +68,25 @@ def ticker(symbol):
                  color='orange',
                  alpha=0.6,
                  legend_label='Close',
+                 name='Close',
                  )
         p.line(df.index,
                df['High'],
                line_width=2,
                color='steelblue',
                legend_label='High',
+               name='High',
                )
         p.line(df.index,
                df['Low'],
                line_width=2,
                color='firebrick',
                legend_label='Low',
+               name='Low'
                )
         p.xaxis.ticker = DatetimeTicker(desired_num_ticks=20)
-        hover = HoverTool(tooltips=[('Date', '@x{%F}'),
+        hover = HoverTool(tooltips=[('Time Series', '$name'),
+                                    ('Date', '@x{%F}'),
                                     ('Price', '$@y{0.00 a}'),
                                     ],
                           formatters={'@x': 'datetime'})

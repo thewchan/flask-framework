@@ -23,23 +23,15 @@ def index():
     if request.method == 'GET':
         # Default gives IBM's ticker when first loaded.
         app.vars['symbol'] = 'IBM'
-        p = create_ticker(app.vars['symbol'])
-        p_json = json.dumps(json_item(p, 'myplot'))
         return render_template('index.html',
                                symbol=app.vars['symbol'],
-                               p=p,
-                               p_json=p_json,
                                )
 
     else:
         # User submitted a ticker symbol aka method = 'POST'
         app.vars['symbol'] = request.form['symbol']
-        p = create_ticker(app.vars['symbol'])
-        json.dumps(json_item(p, 'myplot'))
         return render_template('index.html',
                                symbol=app.vars['symbol'],
-                               p=p,
-                               p_json=p_json,
                                )
 
 
