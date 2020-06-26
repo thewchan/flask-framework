@@ -1,8 +1,8 @@
 """Display a stock ticker visualization based on user input."""
 import json
-from flask import Flask, render_template, request, redirect
+import os
+from flask import Flask, render_template, request, send_from_directory
 from bokeh.embed import json_item
-from bokeh.resources import CDN
 from ticker import ticker
 
 
@@ -45,6 +45,13 @@ def plot():
     """Render json item from bokeh plot."""
     p = create_ticker(app.vars['symbol'])
     return json.dumps(json_item(p, 'myplot'))
+
+
+@app.route('/favicon.ico')
+def favicon():
+    """Redirect to favicon."""
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico')
 
 
 if __name__ == '__main__':

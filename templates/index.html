@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/gif" href="{{ url_for('static', filename='favicon.ico') }}">
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.0.min.js" integrity="sha384-YobFyzPeVUsFQydHkJGsJL1kyfHnWxOlPc3EwaV22TmBaeGoXHLWx5aRRVPS9xlE" crossorigin="anonymous">
     </script><script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.0.min.js" integrity="sha384-NuAg9+TcTQQqvQCTtkCneRrpkTiMhhfiq0KHiBzx8ECiKiLWXHN6i6ia3q7b3eHu" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.0.min.js" integrity="sha384-uMVqQc8JqHitD67bXTn9a06Mrk3EiHRaZ18EJENQenAKJ/KL71SakdXYomZQpGRr" crossorigin="anonymous"></script>
@@ -13,7 +15,7 @@
       <div class="row">
         <div class="col-lg-12 text-left">
           <h2>A Simple Stock Price Visualizer</h2>
-          <form>
+          <form id="symbol_input" method="post" action="/">
             <label for="symbol">Stock ticker symbol:</label>
             <input type="text" id="symbol" name="symbol">
             <input type="submit" value="Submit">
@@ -22,6 +24,7 @@
       </div>
     </div>
     <div id="myplot"></div>
+    <p>{{ symbol }}</p>
     <script>
     fetch('/plot')
     .then(function(response) { return response.json(); })
