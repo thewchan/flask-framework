@@ -14,15 +14,19 @@ html {
 	line-height:1.15;
 	-webkit-text-size-adjust:100%;
 	position: relative;
-    min-height: 100%;
+    height:100%;
+    box-sizing:border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing:inherit;
 }
 
 footer {
     position: absolute;
-    left: 0;
     bottom: 0;
-    height: 100px;
-    width: 100%;
 }
 
 p {
@@ -35,7 +39,10 @@ p.license {
 }
 
 body {
-	margin:25px
+	margin:25px;
+	position:relative;
+	min-height:100%;
+	padding-bottom:6rem;
 }
 
 main {
