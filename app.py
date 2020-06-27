@@ -7,7 +7,7 @@ from ticker import ticker
 
 
 app = Flask(__name__)
-app.vars = {}
+app.vars = {'symbol': '', 'error': ''}
 
 
 def create_ticker(symbol):
@@ -25,6 +25,7 @@ def index():
         app.vars['symbol'] = 'IBM'
         return render_template('index.html',
                                symbol=app.vars['symbol'],
+                               error=app.vars['error']
                                )
 
     else:
@@ -32,18 +33,27 @@ def index():
         app.vars['symbol'] = request.form['symbol']
         return render_template('index.html',
                                symbol=app.vars['symbol'],
+                               error=app.vars['error']
                                )
 
 
 @app.route('/about')
 def about():
+    """Render the about page."""
     return render_template('about.html')
 
 
 @app.route('/plot')
 def plot():
     """Render json item from bokeh plot."""
-    p = create_ticker(app.vars['symbol'])
+    try:
+        app.vars['error'] = ''
+        p = create_ticker(app.vars['symbol'])
+
+    except KeyError:
+        app.vars['error'] = (f'{app.vars["symbol"]}: '
+                             f'Entered stock ticker symbol does not exist.')
+
     return json.dumps(json_item(p, 'myplot'))
 
 

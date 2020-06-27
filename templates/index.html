@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="icon" type="image/gif" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.0.min.js" integrity="sha384-YobFyzPeVUsFQydHkJGsJL1kyfHnWxOlPc3EwaV22TmBaeGoXHLWx5aRRVPS9xlE" crossorigin="anonymous">
     </script><script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.1.0.min.js" integrity="sha384-NuAg9+TcTQQqvQCTtkCneRrpkTiMhhfiq0KHiBzx8ECiKiLWXHN6i6ia3q7b3eHu" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.1.0.min.js" integrity="sha384-uMVqQc8JqHitD67bXTn9a06Mrk3EiHRaZ18EJENQenAKJ/KL71SakdXYomZQpGRr" crossorigin="anonymous"></script>
@@ -12,23 +14,40 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-left">
-          <h2>A Simple Stock Price Visualizer</h2>
-          <form id="symbol_input" method="post" action="/">
-            <label for="symbol">Stock ticker symbol:</label>
-            <input type="text" id="symbol" name="symbol">
-            <input type="submit" value="Submit">
-          </form>          
-        </div>
+      <div class="pure-menu pure-menu-horizontal">
+        <a href="#" class="pure-menu-heading pure-menu-link">A Simple Stock Price Visualizer</a>
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item">
+            <a href="https://finance.google.com/finance" target="_blank" class="pure-menu-link">Symbols Lookup</a>
+          </li>
+          <li class="pure-menu-item">
+            <a href="{{ url_for('about')}}" class="pure-menu-link">About</a>
+          </li>
+        </ul>
       </div>
+
     </div>
     <div id="myplot"></div>
-    <p>{{ symbol }}</p>
+    <div id="error">
+      <p>{{ error }}</p>
+    </div>
+    <div>
+      <form class="pure-form" id="symbol_input" method="post" action="/">
+        <input type="text" id="symbol" name="symbol" placeholder="Stock Symbol">
+        <button class="pure-button pure-button-primary" type="submit" value="Submit">Submit</button>
+      </form>
+    </div>
     <script>
     fetch('/plot')
     .then(function(response) { return response.json(); })
     .then(function(item) { return Bokeh.embed.embed_item(item); });
     </script>
+    <footer>
+      <p class="license">Copyright (C) 2020 Matthew Chan</p>
+      <p class="license">This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <a href="https://www.gnu.org/licenses/">here</a>.</p>
+      <p class="license">This website is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License.</a></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
