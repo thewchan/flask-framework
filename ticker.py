@@ -92,6 +92,7 @@ def ticker(symbol):
                           formatters={'@x': 'datetime'})
         p.add_tools(hover)
         p.toolbar.active_inspect = hover
+        p.sizing_mode = 'stretch_width'
 
         return p
 

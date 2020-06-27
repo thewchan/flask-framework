@@ -47,6 +47,11 @@ h1 {
 	margin:.67em 0
 }
 
+.bokeh {
+	width:100%;
+	max-width:800px;
+}
+
 hr {
 	-webkit-box-sizing:content-box;
 	box-sizing:content-box;
