@@ -1,41 +1,17 @@
-# Flask on Heroku
+# A Simple Stock Ticker Visualization App
 
-This project is intended to help you tie together some important concepts and
-technologies from the 12-day course, including Git, Flask, JSON, Pandas,
-Requests, Heroku, and Bokeh for visualization.
+Hello! This little stock ticker visualization web app was created by [Matt Chan](http://github.com/thewchan/) as part of his adventure over the [The Data Incubator Data Science Fellowship](https://www.thedataincubator.com). This app was the on-boarding assignment prior to the beginning of the actual fellowship program. Check out the source code of the app here at Github, and see it live over at [Heroku](https://mychan-stock.herokuapp.com/)! Some skeleton file and code were provided by TDI themselves. The interactive visualization is powered by [Bokeh](https://bokeh.org/), an open source interactive visualization Python library. The stock price time series data is provided by [Alpha Vantage](https://www.alphavantage.co/), who provides free APIs for financial trends. The website itself is powered by [Flask](https://flask.palletsprojects.com/en/1.1.x/), a micro web framework written in Python which is in turn powered by [Jinja](https://palletsprojects.com/p/jinja/) and [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/), a template engine and a web server gateway interface toolkit, respectively. The CSS of the web app is powered by [Pure.css](https://purecss.io/), a set of CSS modules designed by [Yahoo](https://www.yahoo.com/), with minor modification. The favicon was provided by [Free Favicon](https://freefavicon.com/). Enjoy!
 
-The repository contains a basic template for a Flask configuration that will
-work on Heroku.
+####Licence
+A Simple Stock Ticker Visualization Web App
+Copyright (C) 2020 Matthew Chan
 
-A [finished example](https://lemurian.herokuapp.com) that demonstrates some basic functionality.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-## Step 1: Setup and deploy
-- Git clone the existing template repository.
-- `Procfile`, `requirements.txt`, `conda-requirements.txt`, and `runtime.txt`
-  contain some default settings.
-- There is some boilerplate HTML in `templates/`
-- Create Heroku application with `heroku create <app_name>` or leave blank to
-  auto-generate a name.
-- (Suggested) Use the [conda buildpack](https://github.com/thedataincubator/conda-buildpack).
-  If you choose not to, put all requirements into `requirements.txt`
-
-  `heroku config:add BUILDPACK_URL=https://github.com/thedataincubator/conda-buildpack.git#py3`
-
-  The advantages of conda include easier virtual environment management and fast package installation from binaries (as compared to the compilation that pip-installed packages sometimes require).
-  One disadvantage is that binaries take up a lot of memory, and the slug pushed to Heroku is limited to 300 MB. Another note is that the conda buildpack is being deprecated in favor of a Docker solution (see [docker branch](https://github.com/thedataincubator/flask-framework/tree/docker) of this repo for an example).
-- Deploy to Heroku: `git push heroku master`
-- You should be able to see your site at `https://<app_name>.herokuapp.com`
-- A useful reference is the Heroku [quickstart guide](https://devcenter.heroku.com/articles/getting-started-with-python-o).
-
-## Step 2: Get data from API and put it in pandas
-- Use the `requests` library to grab some data from a public API. This will
-  often be in JSON format, in which case `simplejson` will be useful.
-- Build in some interactivity by having the user submit a form which determines which data is requested.
-- Create a `pandas` dataframe with the data.
-
-## Step 3: Use Bokeh to plot pandas data
-- Create a Bokeh plot from the dataframe.
-- Consult the Bokeh [documentation](http://bokeh.pydata.org/en/latest/docs/user_guide/embed.html)
-  and [examples](https://github.com/bokeh/bokeh/tree/master/examples/embed).
-- Make the plot visible on your website through embedded HTML or other methods - this is where Flask comes in to manage the interactivity and display the desired content.
-- Some good references for Flask: [This article](https://realpython.com/blog/python/python-web-applications-with-flask-part-i/), especially the links in "Starting off", and [this tutorial](https://github.com/bev-a-tron/MyFlaskTutorial).
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
